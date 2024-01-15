@@ -1,0 +1,2 @@
+all:
+	gcc -I src/sdl2/include -L src/sdl2/lib -L src/game -L src/grid -L src/snake -L src/apple src/main.c src/game/game.c src/grid/grid.c src/snake/snake.c src/apple/apple.c -o Snake -lSDL2main -lSDL2
