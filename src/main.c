@@ -1,13 +1,16 @@
 #include "game/game.h"
 
-int main(int argc, char const *argv[])
+int main(int argc, char *argv[])
 {
     initialize_sdl();
     create_window_and_renderer("Snake");
+    // initialize_text();
+    initialize_sound();
 
-    initialise_game_elements();
+    initialize_game();
     start_game_and_keep_running();
 
-    cleanup();
+    game_cleanup();
+
     return EXIT_SUCCESS;
 }

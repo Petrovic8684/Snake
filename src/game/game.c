@@ -9,7 +9,7 @@ void initialize_sdl(void)
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
     {
-        fprintf(stderr, "SDL failed to initialise: %s\n", SDL_GetError());
+        fprintf(stderr, "SDL failed to initialize: %s\n", SDL_GetError());
         exit(EXIT_FAILURE);
     }
 }
@@ -21,13 +21,13 @@ void create_window_and_renderer(const char *title)
 
     if (window == NULL)
     {
-        fprintf(stderr, "SDL window failed to initialise: %s\n", SDL_GetError());
+        fprintf(stderr, "SDL window failed to initialize: %s\n", SDL_GetError());
         exit(EXIT_FAILURE);
     }
 
     if (renderer == NULL)
     {
-        fprintf(stderr, "SDL renderer failed to initialise: %s\n", SDL_GetError());
+        fprintf(stderr, "SDL renderer failed to initialize: %s\n", SDL_GetError());
         exit(EXIT_FAILURE);
     }
 }
@@ -53,27 +53,37 @@ void poll_events(void)
     }
 }
 
-void initialise_game_elements(void)
+void render(void)
+{
+    SDL_SetRenderDrawColor(renderer, 12, 12, 12, 255);
+    SDL_RenderClear(renderer);
+
+    render_grid();
+
+    SDL_RenderPresent(renderer);
+}
+
+void initialize_game(void)
 {
     initialize_grid();
+}
+
+void restart_game(void)
+{
+    grid_cleanup();
+    initialize_game();
 }
 
 void start_game_and_keep_running(void)
 {
     while (is_window_open == true)
     {
-        SDL_SetRenderDrawColor(renderer, 12, 12, 12, 255);
-        SDL_RenderClear(renderer);
-
-        render_grid(renderer, WINDOW_DIMENSION);
-
-        SDL_RenderPresent(renderer);
-
+        render();
         poll_events();
     }
 }
 
-void cleanup(void)
+void game_cleanup(void)
 {
     grid_cleanup();
     SDL_DestroyRenderer(renderer);

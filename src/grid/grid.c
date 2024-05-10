@@ -8,9 +8,9 @@ void initialize_grid(void)
     memset(grid->content, 0, sizeof(Uint8[GRID_DIMENSION][GRID_DIMENSION]));
 }
 
-void render_grid(SDL_Renderer *renderer, const int window_dimension)
+void render_grid()
 {
-    int tile_size = window_dimension / GRID_DIMENSION;
+    int tile_size = WINDOW_DIMENSION / GRID_DIMENSION;
 
     SDL_Rect cell;
     cell.w = cell.h = tile_size;
@@ -39,6 +39,6 @@ void render_grid(SDL_Renderer *renderer, const int window_dimension)
 
 void grid_cleanup(void)
 {
-    grid = NULL;
     free(grid);
+    grid = NULL;
 }

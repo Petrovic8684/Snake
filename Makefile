@@ -1,2 +1,2 @@
 all:
-	gcc -I src/sdl2/include -L src/sdl2/lib -L src/game -L src/grid -L src/snake -L src/apple src/main.c src/game/game.c src/grid/grid.c src/snake/snake.c src/apple/apple.c -o Snake -lSDL2main -lSDL2
+	gcc -I src/sdl2/include -L src/sdl2/lib -L src/util -L src/game -L src/grid -L src/snake -L src/apple src/main.c src/game/game.c src/grid/grid.c src/snake/snake.c src/apple/apple.c src/util/sounds/sounds.c src/util/fonts/fonts.c src/util/colors/colors.c -o Snake -lmingw32 -lSDL2main -lSDL2 -lSDL2_ttf -lSDL2_mixer
