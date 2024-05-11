@@ -10,32 +10,74 @@ void initialize_grid(void)
 
 void render_grid()
 {
-    int tile_size = WINDOW_DIMENSION / GRID_DIMENSION;
-
     SDL_Rect cell;
-    cell.w = cell.h = tile_size;
+    cell.w = cell.h = GRID_DIMENSION;
 
     SDL_Rect rect;
-    rect.w = rect.h = tile_size;
+    rect.w = rect.h = GRID_DIMENSION;
 
     for (Uint8 i = 0; i < GRID_DIMENSION; i++)
         for (Uint8 j = 0; j < GRID_DIMENSION; j++)
         {
-            SDL_SetRenderDrawColor(renderer, 30, 30, 30, 255);
+            if (grid_style == GRID_ON)
+            {
+                SDL_SetRenderDrawColor(renderer, color_gray.r, color_gray.g, color_gray.b, 255);
 
-            cell.x = j * tile_size;
-            cell.y = i * tile_size;
-            SDL_RenderDrawRect(renderer, &cell);
+                cell.x = j * GRID_DIMENSION;
+                cell.y = i * GRID_DIMENSION;
+                SDL_RenderDrawRect(renderer, &cell);
+            }
 
             if (grid->content[i][j] == 1)
             {
-                rect.x = j * tile_size;
-                rect.y = i * tile_size;
+                rect.x = j * GRID_DIMENSION;
+                rect.y = i * GRID_DIMENSION;
                 SDL_SetRenderDrawColor(renderer, grid->color[i][j].r, grid->color[i][j].g, grid->color[i][j].b, 255);
                 SDL_RenderFillRect(renderer, &rect);
+
+                if (grid_style == GRID_ON || grid_style == GRID_ONLY_SNAKE)
+                {
+                    SDL_SetRenderDrawColor(renderer, color_gray.r, color_gray.g, color_gray.b, 255);
+                    SDL_RenderDrawRect(renderer, &rect);
+                }
             }
         }
 }
+
+void update_grid(void)
+{
+    for (Uint8 i = 0; i < GRID_DIMENSION; i++)
+        for (Uint8 j = 0; j < GRID_DIMENSION; j++)
+        {
+            if (snake->position.x == j && snake->position.y == i)
+            {
+                grid->content[i][j] = 1;
+                grid->color[i][j] = color_green;
+            }
+            else
+            {
+                grid->content[i][j] = 0;
+                grid->color[i][j] = color_gray;
+            }
+        }
+}
+
+/*void print_grid(void)
+{
+    for (Uint8 i = 0; i < GRID_DIMENSION; i++)
+    {
+        for (Uint8 j = 0; j < GRID_DIMENSION; j++)
+        {
+            fprintf(stdout, "%d ", grid->content[i][j]);
+        }
+
+        fprintf(stdout, "\n");
+    }
+
+    fprintf(stdout, "\n");
+    fprintf(stdout, "\n");
+    fprintf(stdout, "\n");
+}*/
 
 void grid_cleanup(void)
 {

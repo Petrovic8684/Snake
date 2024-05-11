@@ -4,7 +4,7 @@ int main(int argc, char *argv[])
 {
     initialize_sdl();
     create_window_and_renderer("Snake");
-    // initialize_text();
+    initialize_text();
     initialize_sound();
 
     initialize_game();
