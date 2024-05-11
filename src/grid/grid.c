@@ -28,7 +28,7 @@ void render_grid()
                 SDL_RenderDrawRect(renderer, &cell);
             }
 
-            if (grid->content[i][j] == 1)
+            if (grid->content[i][j] == 1 || grid->content[i][j] == 2)
             {
                 rect.x = j * GRID_DIMENSION;
                 rect.y = i * GRID_DIMENSION;
@@ -53,6 +53,11 @@ void update_grid(void)
             {
                 grid->content[i][j] = 1;
                 grid->color[i][j] = color_green;
+            }
+            else if (apple->position.x == j && apple->position.y == i)
+            {
+                grid->content[i][j] = 2;
+                grid->color[i][j] = color_red;
             }
             else
             {

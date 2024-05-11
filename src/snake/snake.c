@@ -63,4 +63,22 @@ void move_snake(void)
         // move tail
         break;
     }
+
+    if (snake->position.x == apple->position.x && snake->position.y == apple->position.y)
+    {
+        eat_apple();
+    }
+}
+
+void eat_apple(void)
+{
+    increase_score();
+    increase_game_speed();
+    spawn_apple();
+}
+
+void snake_cleanup(void)
+{
+    free(snake);
+    snake = NULL;
 }

@@ -2,12 +2,7 @@
 #define SNAKE_H
 
 #include "../game/game.h"
-
-struct vector2
-{
-    Uint8 x;
-    Uint8 y;
-};
+#include "../util/math.h"
 
 struct snake_element
 {
@@ -29,5 +24,7 @@ extern enum movement_direction target_direction;
 void initialize_snake(void);
 void change_snake_direction(enum movement_direction direction);
 void move_snake(void);
+void eat_apple(void);
+void snake_cleanup(void);
 
 #endif

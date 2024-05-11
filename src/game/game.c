@@ -126,12 +126,13 @@ void initialize_game(void)
     game_speed = STARTING_GAME_SPEED;
 
     initialize_snake();
+    initialize_apple();
     initialize_grid();
 }
 
 void increase_game_speed(void)
 {
-    game_speed += 100;
+    game_speed += 200;
 }
 
 void increase_score(void)
@@ -179,6 +180,7 @@ menu:
     start_time = SDL_GetTicks();
 
 game:
+    spawn_apple();
     while (is_window_open == true && is_game_lost == false)
     {
         render();
@@ -221,6 +223,9 @@ void game_cleanup(void)
     sound_cleanup();
 
     grid_cleanup();
+    snake_cleanup();
+    apple_cleanup();
+
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
 

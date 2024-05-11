@@ -8,6 +8,7 @@
 
 #include "../grid/grid.h"
 #include "../snake/snake.h"
+#include "../apple/apple.h"
 #include "../util/colors/colors.h"
 #include "../util/sounds/sounds.h"
 #include "../util/fonts/fonts.h"

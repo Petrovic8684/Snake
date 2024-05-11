@@ -30,7 +30,7 @@ void update_text(const char *prefix, bool has_variable, const int variable, SDL_
         char string[20];
         string[0] = '\0';
         if (add_padding == true)
-            sprintf(string, "%s %06d", prefix, variable);
+            sprintf(string, "%s %04d", prefix, variable);
         else
             sprintf(string, "%s %d", prefix, variable);
 
