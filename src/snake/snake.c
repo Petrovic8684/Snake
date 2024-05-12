@@ -30,40 +30,32 @@ void move_snake(void)
     switch (target_direction)
     {
     case UP:
-        if (snake->position.y <= 0)
-        {
-            snake->position.y = GRID_DIMENSION - 1;
-            return;
-        }
-
         snake->position.y--;
+
+        if (snake->position.y > GRID_DIMENSION) // Loops back to 255 because of Uint8
+            snake->position.y = GRID_DIMENSION - 1;
+
         break;
     case DOWN:
-        if (snake->position.y >= GRID_DIMENSION - 1)
-        {
-            snake->position.y = 0;
-            return;
-        }
-
         snake->position.y++;
+
+        if (snake->position.y > GRID_DIMENSION - 1)
+            snake->position.y = 0;
+
         break;
     case LEFT:
-        if (snake->position.x <= 0)
-        {
-            snake->position.x = GRID_DIMENSION - 2;
-            return;
-        }
-
         snake->position.x--;
+
+        if (snake->position.x > GRID_DIMENSION) // Loops back to 255 because of Uint8
+            snake->position.x = GRID_DIMENSION - 2;
+
         break;
     case RIGHT:
-        if (snake->position.x >= GRID_DIMENSION - 2)
-        {
-            snake->position.x = 0;
-            return;
-        }
-
         snake->position.x++;
+
+        if (snake->position.x > GRID_DIMENSION - 2)
+            snake->position.x = 0;
+
         break;
     }
 
@@ -114,6 +106,7 @@ void check_self_collision(void)
 
 void eat_apple(void)
 {
+    play_eat_sound();
     add_snake_element();
     increase_score();
     increase_game_speed();
