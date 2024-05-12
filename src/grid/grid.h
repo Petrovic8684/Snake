@@ -25,7 +25,6 @@ extern struct grid *grid;
 void initialize_grid(void);
 void render_grid(void);
 void update_grid(void);
-// void print_grid(void);
 void grid_cleanup(void);
 
 #endif

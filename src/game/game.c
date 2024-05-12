@@ -132,7 +132,14 @@ void initialize_game(void)
 
 void increase_game_speed(void)
 {
-    game_speed += 200;
+    if (game_speed > 500)
+        game_speed -= 100;
+    if (game_speed <= 500 && game_speed > 300)
+        game_speed -= 50;
+    else if (game_speed <= 300 && game_speed > 100)
+        game_speed -= 20;
+    else if (game_speed <= 100)
+        return;
 }
 
 void increase_score(void)

@@ -16,7 +16,7 @@
 #define WINDOW_WIDTH 600
 #define WINDOW_HEIGHT 700
 
-#define STARTING_GAME_SPEED 1000;
+#define STARTING_GAME_SPEED 600;
 
 extern SDL_Window *window;
 extern SDL_Renderer *renderer;

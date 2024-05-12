@@ -46,43 +46,42 @@ void render_grid()
 
 void update_grid(void)
 {
-    for (Uint8 i = 0; i < GRID_DIMENSION; i++)
-        for (Uint8 j = 0; j < GRID_DIMENSION; j++)
-        {
-            if (snake->position.x == j && snake->position.y == i)
-            {
-                grid->content[i][j] = 1;
-                grid->color[i][j] = color_green;
-            }
-            else if (apple->position.x == j && apple->position.y == i)
-            {
-                grid->content[i][j] = 2;
-                grid->color[i][j] = color_red;
-            }
-            else
-            {
-                grid->content[i][j] = 0;
-                grid->color[i][j] = color_gray;
-            }
-        }
-}
+    struct snake_element *temp = snake;
 
-/*void print_grid(void)
-{
     for (Uint8 i = 0; i < GRID_DIMENSION; i++)
     {
         for (Uint8 j = 0; j < GRID_DIMENSION; j++)
         {
-            fprintf(stdout, "%d ", grid->content[i][j]);
+            grid->content[i][j] = 0;
+            grid->color[i][j] = color_gray;
+
+            if (apple->position.x == j && apple->position.y == i)
+            {
+                grid->content[i][j] = 2;
+                grid->color[i][j] = color_red;
+            }
+
+            if (temp->position.x == j && temp->position.y == i)
+            {
+                grid->content[i][j] = 1;
+                grid->color[i][j] = color_green;
+            }
+
+            while (temp != NULL)
+            {
+                if (temp->position.x == j && temp->position.y == i)
+                {
+                    grid->content[i][j] = 1;
+                    grid->color[i][j] = color_green;
+                }
+
+                temp = temp->next_element;
+            }
+
+            temp = snake;
         }
-
-        fprintf(stdout, "\n");
     }
-
-    fprintf(stdout, "\n");
-    fprintf(stdout, "\n");
-    fprintf(stdout, "\n");
-}*/
+}
 
 void grid_cleanup(void)
 {

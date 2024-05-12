@@ -12,10 +12,11 @@ void spawn_apple(void)
     Uint8 vertical;
     Uint8 horizontal;
 
-    srand(time(NULL));
     do
     {
+        srand(time(NULL));
         vertical = rand() % GRID_DIMENSION;
+        srand(time(NULL));
         horizontal = rand() % (GRID_DIMENSION - 1);
     } while (grid->content[vertical][horizontal] != 0);
 
