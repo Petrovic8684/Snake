@@ -56,6 +56,7 @@ void handle_input(SDL_Event event)
             is_paused = false;
 
         is_in_menu = true;
+        break;
     case SDLK_p:
         if (is_in_menu == true)
             return;
@@ -128,6 +129,8 @@ void initialize_game(void)
     initialize_snake();
     initialize_apple();
     initialize_grid();
+
+    srand(time(NULL));
 }
 
 void increase_game_speed(void)
@@ -211,7 +214,7 @@ game:
         }
     }
 
-    if (is_game_lost)
+    if (is_game_lost == true)
     {
         restart_game();
         goto game;
